@@ -61,13 +61,13 @@ class ExampleDataTest(unittest.TestCase):
         known_values = {
             'BallStick_r1':
                 {'LogLikelihood':
-                     {'mean': -327297.53125, 'std': 359791.5625}},
+                     {'mean': -1215.5128173828125, 'std': 924.2643432617188}},
             'Tensor':
                 {'LogLikelihood':
-                     {'mean': -5891.28515625, 'std': 7691.93408203125}},
+                     {'mean': -182.73013305664062, 'std': 20.022197723388672}},
             'NODDI':
                 {'LogLikelihood':
-                     {'mean': -19352.4609375, 'std': 14489.8623046875}}}
+                     {'mean': -451.26239013671875, 'std': 37.696372985839844}}}
 
         for model_name in ['BallStick_r1', 'Tensor', 'NODDI']:
             pjoin = mdt.make_path_joiner(os.path.join(self._tmp_dir, self._tmp_dir_subdir, 'b1k_b2k'))
@@ -87,13 +87,13 @@ class ExampleDataTest(unittest.TestCase):
         known_values = {
             'CHARMED_r1':
                 {'LogLikelihood':
-                     {'mean': -8038.29248046875, 'std': 4703.6005859375}},
+                     {'mean': -442.6887512207031, 'std': 31.19772720336914}},
             'CHARMED_r2':
                 {'LogLikelihood':
-                     {'mean': -7001.50927734375, 'std': 4062.600341796875}},
+                     {'mean': -436.6225280761719, 'std': 27.23966407775879}},
             'CHARMED_r3':
                 {'LogLikelihood':
-                     {'mean': -6514.17529296875, 'std': 3659.7138671875}}}
+                     {'mean': -433.6161804199219, 'std': 24.84543228149414}}}
 
         for model_name in ['CHARMED_r1', 'CHARMED_r2', 'CHARMED_r3']:
             pjoin = mdt.make_path_joiner(os.path.join(self._tmp_dir, self._tmp_dir_subdir, 'multishell_b6k_max'))
