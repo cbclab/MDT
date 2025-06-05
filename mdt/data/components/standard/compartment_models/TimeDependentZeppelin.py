@@ -8,7 +8,7 @@ __email__ = "robbert@xkls.nl"
 
 
 class TimeDependentZeppelin(CompartmentTemplate):
-    """Implements a Zeppelin (cylindrical symmetric Tensor) with time dependence in the perpendicular diffusivity.
+    r"""Implements a Zeppelin (cylindrical symmetric Tensor) with time dependence in the perpendicular diffusivity.
     The perpendicular diffusivity is calculated as:
 
     .. math::

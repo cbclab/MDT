@@ -315,10 +315,9 @@ def nifti_info_decorate_nibabel_image(nifti_obj):
     Args:
         nifti_obj: a nibabel nifti object
     """
-    original_function = nifti_obj.get_data
 
     def get_data(self, *args, **kwargs):
-        data = original_function(*args, **kwargs)
+        data = np.asanyarray(self._dataobj)
         return nifti_info_decorate_array(data, NiftiInfo(header=self.header, filepath=self.get_filename()))
 
     nifti_obj.get_data = get_data.__get__(nifti_obj, type(nifti_obj))
