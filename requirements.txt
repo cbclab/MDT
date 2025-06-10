@@ -7,3 +7,5 @@ pyyaml
 nibabel
 argcomplete
 tatsu
+setuptools
+PyQt5
