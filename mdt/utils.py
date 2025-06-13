@@ -170,7 +170,7 @@ class SimpleInitializationData(InitializationData):
 class PathJoiner:
 
     def __init__(self, *args, make_dirs=False):
-        """The path joining class.
+        R"""The path joining class.
 
         To construct use something like:
 
@@ -898,7 +898,7 @@ def get_cl_devices(indices=None, device_type=None):
     if device_type is not None:
         return CLEnvironmentFactory.smart_device_selection(preferred_device_type=device_type)
 
-    if indices is not None and not isinstance(indices, collections.Iterable):
+    if indices is not None and not isinstance(indices, collections.abc.Iterable):
         indices = [indices]
 
     envs = CLEnvironmentFactory.smart_device_selection()
@@ -1523,7 +1523,7 @@ def covariance_to_correlation(input_maps):
     correlation_maps = {}
 
     for map_name in input_maps:
-        match = re.match('Covariance\_(.*)\_to\_(.*)', map_name)
+        match = re.match(r'Covariance\_(.*)\_to\_(.*)', map_name)
         if match is not None:
             m0 = match.group(1)
             m1 = match.group(2)
