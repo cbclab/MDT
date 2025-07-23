@@ -725,7 +725,14 @@ def init_user_settings(pass_if_exists=True):
     def init_from_mdt():
         if not os.path.exists(os.path.join(path, 'components')):
             os.makedirs(os.path.join(path, 'components'))
-        cache_path = importlib.resources.files('mdt').joinpath('data/components')
+
+        resource = importlib.resources.files('mdt').joinpath('data/components')
+
+        # `as_file` handles cases where resource is inside a zip
+        with importlib.resources.as_file(resource) as real_path:
+            cache_path = str(real_path)
+            # Now you can copy it or use it
+            shutil.copytree(cache_path, os.path.join(path, 'components'), dirs_exist_ok=True)
 
         for cache_subpath, dirs, files in os.walk(cache_path):
             subdir = cache_subpath[len(cache_path)+1:]
