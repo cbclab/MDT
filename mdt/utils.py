@@ -731,7 +731,6 @@ def init_user_settings(pass_if_exists=True):
         # `as_file` handles cases where resource is inside a zip
         with importlib.resources.as_file(resource) as real_path:
             cache_path = str(real_path)
-            # Now you can copy it or use it
             shutil.copytree(cache_path, os.path.join(path, 'components'), dirs_exist_ok=True)
 
         for cache_subpath, dirs, files in os.walk(cache_path):
