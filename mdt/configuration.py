@@ -24,7 +24,7 @@ from copy import deepcopy
 
 import yaml
 from contextlib import contextmanager
-from pkg_resources import resource_stream
+import importlib.resources
 
 import mot.configuration
 
@@ -124,7 +124,7 @@ def ensure_exists(keys):
 
 def load_builtin():
     """Load the config file from the skeleton in mdt/data/mdt.conf"""
-    with resource_stream('mdt', 'data/mdt.conf') as f:
+    with importlib.resources.files('mdt').joinpath('data/mdt.conf').open('rb') as f:
         load_from_yaml(f.read())
 
 

@@ -11,7 +11,7 @@ import tempfile
 from collections import defaultdict
 from contextlib import contextmanager
 import numpy as np
-import pkg_resources
+import importlib.resources
 from numpy.lib.format import open_memmap
 import mot.lib.utils
 from mdt.lib.components import get_model
@@ -725,7 +725,7 @@ def init_user_settings(pass_if_exists=True):
     def init_from_mdt():
         if not os.path.exists(os.path.join(path, 'components')):
             os.makedirs(os.path.join(path, 'components'))
-        cache_path = pkg_resources.resource_filename('mdt', 'data/components')
+        cache_path = importlib.resources.files('mdt').joinpath('data/components')
 
         for cache_subpath, dirs, files in os.walk(cache_path):
             subdir = cache_subpath[len(cache_path)+1:]
@@ -737,7 +737,7 @@ def init_user_settings(pass_if_exists=True):
             for file in files:
                 shutil.copy(os.path.join(cache_subpath, file), os.path.join(config_path, file))
 
-        cache_path = pkg_resources.resource_filename('mdt', 'data/mdt.conf')
+        cache_path = importlib.resources.files('mdt').joinpath('data/mdt.conf')
         shutil.copy(cache_path, path + '/mdt.default.conf')
 
         if not os.path.exists(path + '/components/user/'):
@@ -1435,7 +1435,7 @@ def get_example_data(output_directory):
     Args:
         output_directory (str): the directory to write the files to
     """
-    example_data_dir = os.path.abspath(pkg_resources.resource_filename('mdt', 'data/mdt_example_data'))
+    example_data_dir = os.path.abspath(importlib.resources.files('mdt').joinpath('data/mdt_example_data'))
     for dataset_name in os.listdir(example_data_dir):
 
         dataset_output_path = os.path.join(output_directory, 'mdt_example_data', dataset_name)
