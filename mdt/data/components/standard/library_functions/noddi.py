@@ -64,7 +64,7 @@ class NODDI_LegendreGaussianIntegral(LibraryFunctionTemplate):
     """
     parameters = ['double x',
                   'double* result']
-    cl_code = r'''
+    cl_code = R'''
         // do not change this value! It would require adding approximations
         #define NODDI_IC_MAX_POLYNOMIAL_ORDER 6
 
