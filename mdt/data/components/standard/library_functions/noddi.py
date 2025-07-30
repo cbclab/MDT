@@ -44,7 +44,7 @@ class NODDI_SphericalHarmonicsIntegral(LibraryFunctionTemplate):
 
 
 class NODDI_LegendreGaussianIntegral(LibraryFunctionTemplate):
-    r"""Computes legendre gaussian integrals up to the order specified.
+    R"""Computes legendre gaussian integrals up to the order specified.
 
     Copied from the Matlab NODDI toolbox: function legendreGaussianIntegral(x, n)
     programmed by Gary Hui Zhang (gary.zhang@ucl.ac.uk)
