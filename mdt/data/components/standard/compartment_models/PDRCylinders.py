@@ -61,7 +61,7 @@ class CylindersPoissonDistr(CompartmentTemplate):
         sampling_proposal_std = 0.01
 
     class PoissonPDF(LibraryFunctionTemplate):
-        description = '''
+        description = R'''
             Computes the (continuous) Poisson probability density function, parameterised by lambda.
 
             This computes the Poisson PDF as: :math:`{\frac {\lamdbda^{x} e^{-\lambda}}{\Gamma (x+1)}`
