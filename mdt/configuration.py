@@ -124,7 +124,7 @@ def ensure_exists(keys):
 
 def load_builtin():
     """Load the config file from the skeleton in mdt/data/mdt.conf"""
-    with importlib.resources.files('mdt').joinpath('data/mdt.conf').open('rb') as f:
+    with importlib.resources.files('mdt').joinpath('data/mdt.conf').open('r') as f:
         load_from_yaml(f.read())
 
 
