@@ -904,7 +904,7 @@ def get_cl_devices(indices=None, device_type=None):
     if device_type is not None:
         return CLEnvironmentFactory.smart_device_selection(preferred_device_type=device_type)
 
-    if indices is not None and not isinstance(indices, collections.Iterable):
+    if indices is not None and not isinstance(indices, collections.abc.Iterable):
         indices = [indices]
 
     envs = CLEnvironmentFactory.smart_device_selection()
