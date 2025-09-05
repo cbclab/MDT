@@ -726,12 +726,7 @@ def init_user_settings(pass_if_exists=True):
         if not os.path.exists(os.path.join(path, 'components')):
             os.makedirs(os.path.join(path, 'components'))
 
-        resource = importlib.resources.files('mdt').joinpath('data/components')
-
-        # `as_file` handles cases where resource is inside a zip
-        with importlib.resources.as_file(resource) as real_path:
-            cache_path = str(real_path)
-            shutil.copytree(cache_path, os.path.join(path, 'components'), dirs_exist_ok=True)
+        cache_path = str(importlib.resources.files('mdt').joinpath('data/components'))
 
         for cache_subpath, dirs, files in os.walk(cache_path):
             subdir = cache_subpath[len(cache_path)+1:]
@@ -1529,7 +1524,7 @@ def covariance_to_correlation(input_maps):
     correlation_maps = {}
 
     for map_name in input_maps:
-        match = re.match('Covariance\_(.*)\_to\_(.*)', map_name)
+        match = re.match(r'Covariance\_(.*)\_to\_(.*)', map_name)
         if match is not None:
             m0 = match.group(1)
             m1 = match.group(2)
