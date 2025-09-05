@@ -120,10 +120,12 @@ class ExampleDataTest(unittest.TestCase):
             roi = mdt.create_roi(user_volumes['LogLikelihood'], pjoin('b1k_b2k_example_slices_24_38_mask'))
 
             for map_name, test_values in known_values[model_name].items():
-                np.testing.assert_allclose(test_values['mean'], np.mean(roi),
-                                           rtol=1e-4, err_msg='{} - {} - mean'.format(msg_prefix, map_name))
-                np.testing.assert_allclose(test_values['std'], np.std(roi),
-                                           rtol=1e-4, err_msg='{} - {} - std'.format(msg_prefix, map_name))
+                with self.subTest():
+                    np.testing.assert_allclose(test_values['mean'], np.mean(roi),
+                                               rtol=1e-4, err_msg='{} - {} - mean'.format(msg_prefix, map_name))
+                with self.subTest():
+                    np.testing.assert_allclose(test_values['std'], np.std(roi),
+                                               rtol=1e-4, err_msg='{} - {} - std'.format(msg_prefix, map_name))
 
     def test_lls_multishell_b6k_max(self):
         known_values = {
@@ -147,10 +149,12 @@ class ExampleDataTest(unittest.TestCase):
             roi = mdt.create_roi(user_volumes['LogLikelihood'], pjoin('multishell_b6k_max_example_slices_24_38_mask'))
 
             for map_name, test_values in known_values[model_name].items():
-                np.testing.assert_allclose(test_values['mean'], np.mean(roi),
-                                           rtol=1e-4, err_msg='{} - {} - mean'.format(msg_prefix, map_name))
-                np.testing.assert_allclose(test_values['std'], np.std(roi),
-                                           rtol=1e-4, err_msg='{} - {} - std'.format(msg_prefix, map_name))
+                with self.subTest():
+                    np.testing.assert_allclose(test_values['mean'], np.mean(roi),
+                                               rtol=1e-4, err_msg='{} - {} - mean'.format(msg_prefix, map_name))
+                with self.subTest():
+                    np.testing.assert_allclose(test_values['std'], np.std(roi),
+                                               rtol=1e-4, err_msg='{} - {} - std'.format(msg_prefix, map_name))
 
 
 if __name__ == '__main__':
