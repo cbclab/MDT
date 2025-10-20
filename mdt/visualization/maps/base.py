@@ -1213,7 +1213,7 @@ class Font(SimpleConvertibleConfig):
         """
         with warnings.catch_warnings():
             warnings.simplefilter("ignore")
-            fonts = matplotlib.font_manager.get_fontconfig_fonts()
+            fonts = matplotlib.font_manager.findSystemFonts()
             names = []
 
             for font_name in fonts:
