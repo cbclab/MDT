@@ -1159,7 +1159,7 @@ class DMRICompositeModel(EstimableModel):
             ''' + get_cl_deviations_computation_code(zero_locations) + '''
 
             float new_g_length = length(new_g_non_normalized);
-            *g = new_g_non_normalized / new_g_length;
+            *g = new_g_length > 0.0 ? new_g_non_normalized / new_g_length : new_g_non_normalized;
         '''
         if 'b' in parameters_needed:
             body += '*b *= new_g_length * new_g_length;' + "\n"
