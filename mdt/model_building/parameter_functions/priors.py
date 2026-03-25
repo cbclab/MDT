@@ -90,14 +90,14 @@ class UniformWithinBoundsPrior(SimpleParameterPrior):
 class AbsSinPrior(SimpleParameterPrior):
 
     def __init__(self):
-        """Angular prior: :math:`P(v) = |\\sin(v)|`"""
+        R"""Angular prior: :math:`P(v) = |\\sin(v)|`"""
         super().__init__('abs_sin', 'return fabs(sin(value));')
 
 
 class AbsSinHalfPrior(SimpleParameterPrior):
 
     def __init__(self):
-        """Angular prior: :math:`P(v) = |\\sin(x)/2.0|`"""
+        R"""Angular prior: :math:`P(v) = |\\sin(x)/2.0|`"""
         super().__init__('abs_sin_half', 'return fabs(sin(value)/2.0);')
 
 
@@ -139,7 +139,7 @@ class VagueGammaPrior(SimpleParameterPrior):
 class NormalPDF(SimpleParameterPrior):
 
     def __init__(self):
-        r"""Normal PDF on the given value: :math:`P(v) = N(v; \mu, \sigma)`"""
+        R"""Normal PDF on the given value: :math:`P(v) = N(v; \mu, \sigma)`"""
         from mdt.model_building.parameters import FreeParameter
         extra_params = [FreeParameter('mot_float_type mu', True, 0, -np.inf, np.inf,
                                       sampling_prior=AlwaysOne()),
@@ -156,7 +156,7 @@ class NormalPDF(SimpleParameterPrior):
 class AxialNormalPDF(SimpleParameterPrior):
 
     def __init__(self):
-        r"""The axial normal PDF is a Normal distribution wrapped around 0 and :math:`\pi`.
+        R"""The axial normal PDF is a Normal distribution wrapped around 0 and :math:`\pi`.
 
         It's PDF is given by:
 
@@ -205,7 +205,7 @@ class AxialNormalPDF(SimpleParameterPrior):
 class ARDBeta(SimpleParameterPrior):
 
     def __init__(self):
-        r"""This is a collapsed form of the Beta PDF meant for use in Automatic Relevance Detection sampling.
+        R"""This is a collapsed form of the Beta PDF meant for use in Automatic Relevance Detection sampling.
 
         In this prior the ``alpha`` parameter of the Beta prior is set to 1 which simplifies the equation.
         The parameter ``beta`` is still free and can be changed as desired.
@@ -234,7 +234,7 @@ class ARDBeta(SimpleParameterPrior):
 class ARDGaussian(SimpleParameterPrior):
 
     def __init__(self):
-        """This is a Gaussian prior meant for use in Automatic Relevance Detection sampling.
+        R"""This is a Gaussian prior meant for use in Automatic Relevance Detection sampling.
 
         This uses a Gaussian prior with mean at zero and a standard deviation determined by the ``alpha`` parameter
         with the relationship :math:`\sigma = 1/\\sqrt(\\alpha)`.
