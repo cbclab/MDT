@@ -76,7 +76,7 @@ class ModelOutputLogHandler(StreamHandler):
             if self.encoding is None:
                 self.stream = open(self._output_file, self.mode)
             else:
-                self.stream = codecs.open(self._output_file, self.mode, self.encoding)
+                self.stream = open(self._output_file, self.mode, encoding=self.encoding)
 
 
 class StdOutHandler(StreamHandler):
