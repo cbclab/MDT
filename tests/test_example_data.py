@@ -22,11 +22,12 @@ class ExampleDataTest(unittest.TestCase):
 
     @classmethod
     def setUpClass(cls):
+        # make local copy of the example data
         cls._tmp_dir = tempfile.mkdtemp('mdt_example_data_test')
         cls._tmp_dir_subdir = 'mdt_example_data'
-
-        shutil.copytree(os.path.abspath(importlib.resources.files('mdt').joinpath('data/mdt_example_data')),
-                        os.path.join(cls._tmp_dir, cls._tmp_dir_subdir))
+        data_folder = importlib.resources.files('mdt').joinpath('data/mdt_example_data')
+        with importlib.resources.as_file(data_folder) as path:
+            shutil.copytree(path, os.path.join(cls._tmp_dir, cls._tmp_dir_subdir))
 
         cls._run_b1k_b2k_analysis()
         cls._run_b6k_analysis()
