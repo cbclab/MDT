@@ -1,5 +1,5 @@
 import numpy as np
-import collections
+import collections.abc
 from mdt.lib.components import get_model
 from mdt.lib.nifti import get_all_nifti_data
 from mdt.utils import create_roi, restore_volumes
@@ -73,7 +73,7 @@ def simulate_signals(model, protocol, parameters):
 
     model.set_input_data(MockMRIInputData(protocol=protocol))
 
-    if isinstance(parameters, collections.Mapping):
+    if isinstance(parameters, collections.abc.Mapping):
         parameters = model.param_dict_to_array(parameters)
 
     nmr_problems = parameters.shape[0]

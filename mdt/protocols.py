@@ -1,4 +1,4 @@
-import collections
+import collections.abc
 import glob
 import numbers
 import os

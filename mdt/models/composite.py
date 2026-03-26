@@ -2,7 +2,6 @@ import logging
 from collections.abc import Mapping
 from textwrap import dedent
 import copy
-import collections
 import numpy as np
 from mdt.configuration import get_active_post_processing
 from mdt.lib.deferred_mappings import DeferredFunctionDict
@@ -2176,7 +2175,7 @@ class DMRICompositeModel(EstimableModel):
         return None
 
 
-class SamplingPostProcessingData(collections.abc.Mapping):
+class SamplingPostProcessingData(Mapping):
 
     def __init__(self, samples, param_names, fixed_parameters):
         """Stores the sample output for use in the model defined post-processing routines.

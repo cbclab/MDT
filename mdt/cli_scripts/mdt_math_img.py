@@ -38,7 +38,7 @@ sequence as a separate file. This will use the indicated file as basename and ap
 import argparse
 import glob
 import os
-from collections import Sequence
+from collections.abc import Sequence
 import numpy as np
 
 import mdt

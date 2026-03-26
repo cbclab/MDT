@@ -1,4 +1,4 @@
-import collections
+import collections.abc
 import logging
 import logging.config as logging_config
 import os

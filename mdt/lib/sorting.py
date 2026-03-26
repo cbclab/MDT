@@ -4,7 +4,7 @@ For example, in some applications it can be desired to sort volume fractions vox
 module contains functions for creating sort index matrices (determining the sort order), sorting volumes and lists
 and anti-sorting volumes (reversing the sort operation based on the sort index).
 """
-import collections
+import collections.abc
 from copy import copy
 import itertools
 import numpy as np
@@ -82,7 +82,7 @@ def create_2d_sort_matrix(input_volumes, reversed_sort=False):
     Returns:
         ndarray: a 2d matrix with on the 2th dimension the indices of the elements in sorted order.
     """
-    if isinstance(input_volumes, collections.Sequence):
+    if isinstance(input_volumes, collections.abc.Sequence):
         sort_elements = np.column_stack(input_volumes)
     else:
         sort_elements = input_volumes
@@ -120,7 +120,7 @@ def create_4d_sort_matrix(input_volumes, reversed_sort=False):
             tmp.append(data)
         return tmp
 
-    if isinstance(input_volumes, collections.Sequence):
+    if isinstance(input_volumes, collections.abc.Sequence):
         maps_to_sort_on = load_maps(input_volumes)
         input_4d_vol = np.concatenate([m for m in maps_to_sort_on], axis=3)
     else:

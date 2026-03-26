@@ -1,4 +1,4 @@
-import collections
+import collections.abc
 import glob
 import gzip
 import hashlib
@@ -478,13 +478,13 @@ def restore_volumes(data, brain_mask, with_volume_dim=True):
             return np.expand_dims(vol, axis=3)
         return vol
 
-    if isinstance(data, collections.Mapping):
+    if isinstance(data, collections.abc.Mapping):
         return {key: restorer(value) for key, value in data.items()}
     elif isinstance(data, list):
         return [restorer(value) for value in data]
     elif isinstance(data, tuple):
         return (restorer(value) for value in data)
-    elif isinstance(data, collections.Sequence):
+    elif isinstance(data, collections.abc.Sequence):
         return [restorer(value) for value in data]
     else:
         return restorer(data)

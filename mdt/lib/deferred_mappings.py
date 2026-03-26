@@ -1,4 +1,4 @@
-import collections
+import collections.abc
 import copy
 
 __author__ = 'Robbert Harms'
@@ -26,7 +26,7 @@ class DeferredActionDict(collections.abc.MutableMapping):
 
                     def callback(key, value)
 
-            items (collections.MutableMapping): the items on which we operate
+            items (collections.abc.MutableMapping): the items on which we operate
             cache (boolean): if we want to cache computed results
         """
         self._func = func
@@ -83,7 +83,7 @@ class DeferredFunctionDict(collections.abc.MutableMapping):
         Items set to this dictionary are assumed to be final, that is, we won't run the function on them.
 
         Args:
-            items (collections.MutableMapping): the items on which we operate, each value should
+            items (collections.abc.MutableMapping): the items on which we operate, each value should
                 contain a function with no parameters that we run to return the results.
             cache (boolean): if we want to cache computed results
         """

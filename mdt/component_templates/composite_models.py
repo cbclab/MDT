@@ -9,7 +9,7 @@ from mdt.model_building.parameters import FreeParameter, ProtocolParameter
 from mdt.models.composite import DMRICompositeModel
 from mot.lib.cl_function import CLFunction, SimpleCLFunction
 from mdt.model_building.trees import CompartmentModelTree
-import collections
+import collections.abc
 
 from mot.optimize.base import SimpleConstraintFunction
 
