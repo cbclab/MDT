@@ -5,7 +5,7 @@ import os
 from contextlib import contextmanager
 import numpy as np
 
-import mot
+import mot.configuration
 from mot.configuration import CLRuntimeInfo, CLRuntimeAction
 from .__version__ import VERSION, VERSION_STATUS, __version__
 
