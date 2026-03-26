@@ -18,13 +18,13 @@ using :py:func:`config_context`. Example:
     with mdt.config_context(YamlStringAction(config)):
         mdt.fit_model(...)
 """
+import importlib.resources
 import os
 import re
 from copy import deepcopy
 
 import yaml
 from contextlib import contextmanager
-import importlib.resources
 
 import mot.configuration
 

@@ -1,7 +1,8 @@
 import collections
+import glob
 import gzip
 import hashlib
-import glob
+import importlib.resources
 import logging
 import logging.config as logging_config
 import os
@@ -11,7 +12,6 @@ import tempfile
 from collections import defaultdict
 from contextlib import contextmanager
 import numpy as np
-import importlib.resources
 from numpy.lib.format import open_memmap
 import mot.lib.utils
 from mdt.lib.components import get_model
@@ -726,20 +726,21 @@ def init_user_settings(pass_if_exists=True):
         if not os.path.exists(os.path.join(path, 'components')):
             os.makedirs(os.path.join(path, 'components'))
 
-        cache_path = str(importlib.resources.files('mdt').joinpath('data/components'))
+        cache_path = importlib.resources.files('mdt').joinpath('data/components')
+        with importlib.resources.as_file(cache_path) as cache_path:
+            for cache_subpath, _, files in os.walk(cache_path):
+                subdir = os.path.relpath(cache_subpath, cache_path)
+                config_path = os.path.join(path, 'components', subdir)
 
-        for cache_subpath, dirs, files in os.walk(cache_path):
-            subdir = cache_subpath[len(cache_path)+1:]
-            config_path = os.path.join(path, 'components', subdir)
+                if not os.path.exists(config_path):
+                    os.makedirs(config_path)
 
-            if not os.path.exists(config_path):
-                os.makedirs(config_path)
-
-            for file in files:
-                shutil.copy(os.path.join(cache_subpath, file), os.path.join(config_path, file))
+                for file in files:
+                    shutil.copy(os.path.join(cache_subpath, file), os.path.join(config_path, file))
 
         cache_path = importlib.resources.files('mdt').joinpath('data/mdt.conf')
-        shutil.copy(cache_path, path + '/mdt.default.conf')
+        with importlib.resources.as_file(cache_path) as file:
+            shutil.copy(file, path + '/mdt.default.conf')
 
         if not os.path.exists(path + '/components/user/'):
             os.makedirs(path + '/components/user/')
@@ -1436,19 +1437,20 @@ def get_example_data(output_directory):
     Args:
         output_directory (str): the directory to write the files to
     """
-    example_data_dir = os.path.abspath(importlib.resources.files('mdt').joinpath('data/mdt_example_data'))
-    for dataset_name in os.listdir(example_data_dir):
+    example_data_dir = importlib.resources.files('mdt').joinpath('data/mdt_example_data')
+    with importlib.resources.as_file(example_data_dir) as example_data_dir:
+        for dataset_name in os.listdir(example_data_dir):
 
-        dataset_output_path = os.path.join(output_directory, 'mdt_example_data', dataset_name)
+            dataset_output_path = os.path.join(output_directory, 'mdt_example_data', dataset_name)
 
-        if not os.path.isdir(dataset_output_path):
-            os.makedirs(dataset_output_path)
+            if not os.path.isdir(dataset_output_path):
+                os.makedirs(dataset_output_path)
 
-        for fname in os.listdir(os.path.join(example_data_dir, dataset_name)):
-            full_fname = os.path.join(example_data_dir, dataset_name, fname)
+            for fname in os.listdir(os.path.join(example_data_dir, dataset_name)):
+                full_fname = os.path.join(example_data_dir, dataset_name, fname)
 
-            if os.path.isfile(full_fname):
-                shutil.copy(full_fname, dataset_output_path)
+                if os.path.isfile(full_fname):
+                    shutil.copy(full_fname, dataset_output_path)
 
 
 def split_array_to_dict(data, param_names):

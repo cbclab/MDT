@@ -1,9 +1,9 @@
-import logging
-from importlib.machinery import SourceFileLoader
-import inspect
-import os
 from collections import defaultdict
 from contextlib import contextmanager
+from importlib.machinery import SourceFileLoader
+import inspect
+import logging
+import os
 import mdt
 import mot
 from mdt.configuration import get_config_dir
@@ -370,7 +370,7 @@ def _load_home_folder():
     """
     for user_type in ['standard', 'user']:
         base_path = os.path.join(get_config_dir(), 'components', user_type)
-        for path, sub_dirs, files in os.walk(base_path):
+        for path, _, files in os.walk(base_path):
             for file in files:
                 if file.endswith('.py') and not file.startswith('__'):
                     full_path = os.path.join(path, file)
