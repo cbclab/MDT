@@ -112,6 +112,6 @@ class test_SSFP(unittest.TestCase):
         K = (1 - E1 * A1 * cos(alpha) - E2**2 * A1**2 * A2**(-2/3.0) * (E1 * A1 - cos(alpha))) \
             / (E2 * A1 * A2**(-4/3.0) * (1 + cos(alpha)) * (1 - E1 * A1))
 
-        F1 = K - np.sqrt(K**2 - A2**2)
+        F1 = K - np.sqrt((K-A2)*(K+A2))
 
         return -((1 - E1) * E2 * A2**(-2/3.0) * (F1 - E2 * A1 * A2**(2/3.0)) * sin(alpha)) / (r - F1 * s)
