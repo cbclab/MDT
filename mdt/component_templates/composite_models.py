@@ -19,7 +19,7 @@ __maintainer__ = "Robbert Harms"
 __email__ = "robbert@xkls.nl"
 
 
-_composite_model_expression_parser = tatsu.compile('''
+_composite_model_expression_parser = tatsu.compile(r'''
     result = expr;
     expr = term ('+'|'-') expr | term;
     term = factor ('*'|'/') term | factor;
