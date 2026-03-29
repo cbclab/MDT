@@ -10,7 +10,7 @@ from setuptools import setup, find_packages, Command
 
 
 def load_requirements(fname):
-    is_comment = re.compile('^\s*(#|--).*').match
+    is_comment = re.compile(r'^\s*(#|--).*').match
     with open(fname) as fo:
         return [line.strip() for line in fo if not is_comment(line) and line.strip()]
 
