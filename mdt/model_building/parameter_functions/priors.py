@@ -90,14 +90,14 @@ class UniformWithinBoundsPrior(SimpleParameterPrior):
 class AbsSinPrior(SimpleParameterPrior):
 
     def __init__(self):
-        R"""Angular prior: :math:`P(v) = |\\sin(v)|`"""
+        R"""Angular prior: :math:`P(v) = |\sin(v)|`"""
         super().__init__('abs_sin', 'return fabs(sin(value));')
 
 
 class AbsSinHalfPrior(SimpleParameterPrior):
 
     def __init__(self):
-        R"""Angular prior: :math:`P(v) = |\\sin(x)/2.0|`"""
+        R"""Angular prior: :math:`P(v) = |\sin(x)/2.0|`"""
         super().__init__('abs_sin_half', 'return fabs(sin(value)/2.0);')
 
 
@@ -237,7 +237,7 @@ class ARDGaussian(SimpleParameterPrior):
         R"""This is a Gaussian prior meant for use in Automatic Relevance Detection sampling.
 
         This uses a Gaussian prior with mean at zero and a standard deviation determined by the ``alpha`` parameter
-        with the relationship :math:`\sigma = 1/\\sqrt(\\alpha)`.
+        with the relationship :math:`\sigma = 1/\sqrt(\alpha)`.
         """
         from mdt.model_building.parameters import FreeParameter
         extra_params = [FreeParameter('mot_float_type alpha', False, 8, 1e-5, 1e4,

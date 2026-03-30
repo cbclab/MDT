@@ -170,7 +170,7 @@ class SimpleInitializationData(InitializationData):
 class PathJoiner:
 
     def __init__(self, *args, make_dirs=False):
-        """The path joining class.
+        R"""The path joining class.
 
         To construct use something like:
 
@@ -1788,5 +1788,3 @@ def compute_noddi_dti(model, input_data, results, noddi_d=1.7e-9):
     if return_as_maps:
         return restore_volumes(results, input_data.mask)
     return results
-
-
