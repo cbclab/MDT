@@ -316,7 +316,7 @@ def nifti_info_decorate_nibabel_image(nifti_obj):
         nifti_obj: a nibabel nifti object
     """
 
-    def get_data(self, *args, **kwargs):
+    def get_data(self):
         data = np.asanyarray(self._dataobj)
         return nifti_info_decorate_array(data, NiftiInfo(header=self.header, filepath=self.get_filename()))
 
